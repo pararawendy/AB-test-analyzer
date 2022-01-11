@@ -2,7 +2,7 @@
 Python class to perform AB test analysis
 
 ## Overview
-This repo contains a Python class to perform an A/B/C… test analysis with **proportion-based metrics** (including posthoc test). In practice, the class is can be used along with any appropriate RDBMS retrieval tool (e.g. [`google.cloud.bigquery`](https://github.com/googleapis/python-bigquery) module for BigQuery) so that, together, they result in an end-to-end analysis process, i.e. from querying the experiment data stored originally in SQL to arriving at the complete analysis results.
+This repo contains a Python class to perform an A/B/C… test analysis with **proportion-based metrics** (including posthoc test). In practice, the class can be used along with any appropriate RDBMS retrieval tool (e.g. [`google.cloud.bigquery`](https://github.com/googleapis/python-bigquery) module for BigQuery) so that, together, they result in an end-to-end analysis process, i.e. from querying the experiment data stored originally in SQL to arriving at the complete analysis results.
 
 ## The `ABTest` Class
 The class is named `ABTest`. It is written on top of several well-known libraries (`numpy`, `pandas`, `scipy`, and `statsmodels`). The class' main functionality is to consume an experiment results data frame (`experiment_df`), metric information (`nominator_metric`, `denominator_metric`), and meta-information about the platform being experimented (`platform`) to perform two layers of statistical tests.
@@ -11,8 +11,8 @@ The class is named `ABTest`. It is written on top of several well-known librarie
 First, it will perform a Chi-square test on the aggregate data level. If this test is significant, the function will continue to perform a posthoc test that consists of testing each pair of experimental groups to report their adjusted p-values, as well as their absolute lift (difference) confidence intervals. Moreover, the class also has a method to calculate the statistical power of the experiment.
 
 ### Class Init
-To create an instance of ABTest class, we need to pass the following parameters--that also become class instance attributes:
-1. `experiment_df`: pandas dataframe that contains the experiment data to be analyzed. The data contained  must form a proportion based metric (nominator_metric/denominator_metric <= 1). More on this parameter can be found in a later section.
+To create an instance of ABTest class, we need to pass the following parameters--that also become the class instance attributes:
+1. `experiment_df`: pandas dataframe that contains the experiment data to be analyzed. The data contained  must form a proportion based metric (`nominator_metric/denominator_metric <= 1`). More on this parameter can be found in a later section.
 2. `nominator_metric`: string representing the name of the nominator metric, one constituent of the proportion-based metric in `experiment_df`, e.g. `"transaction"`
 3. `denominator_metric`: string representing the name of the denominator metric, another constituent of the proportion-based metric in `experiment_df`, e.g. `"visit"`
 4. `platform`: string representing the platform represented by the experiment data, e.g. `"android"`, `"ios"`
