@@ -7,6 +7,11 @@ Python class to perform AB test analysis
 * [Class Init](#class-init)
 * [Methods](#methods)
   - [`get_reporting_df`](#get_reporting_df)
+  - [`posthoc_test`](#posthoc_test)
+  - [`analyze`](#analyze)
+  - [`calculate_power`](#calculate_power)
+* [Data Format](#data-format)
+* [Usage Guideline](#usage-guideline)
 
 ## Overview
 This repo contains a Python class to perform an A/B/C… test analysis with **proportion-based metrics** (including posthoc test). In practice, the class can be used along with any appropriate RDBMS retrieval tool (e.g. [`google.cloud.bigquery`](https://github.com/googleapis/python-bigquery) module for BigQuery) so that, together, they result in an end-to-end analysis process, i.e. from querying the experiment data stored originally in SQL to arriving at the complete analysis results.
